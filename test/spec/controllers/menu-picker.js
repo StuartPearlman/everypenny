@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: MenuPickerCtrl', function () {
 
   // load the controller's module
   beforeEach(module('everyPenny'));
 
-  var MainCtrl,
+  var MenuPickerCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    MenuPickerCtrl = $controller('MenuPickerCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+    expect(MenuPickerCtrl.awesomeThings.length).toBe(3);
   });
 });
