@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all', 'newer:jscs:all'],
+        tasks: ['newer:babel:server', 'newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -77,7 +77,6 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -152,6 +151,22 @@ module.exports = function (grunt) {
       },
       test: {
         src: ['test/spec/{,*/}*.js']
+      }
+    },
+
+    // Transpile from ES6 to ES5
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: 'app',
+          src: ['**/*.js'],
+          dest: '.tmp'
+        }]
       }
     },
 
@@ -465,6 +480,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'babel:server',
       'connect:livereload',
       'watch'
     ]);
