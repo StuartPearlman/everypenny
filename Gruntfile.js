@@ -146,7 +146,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/.tmp/scripts/{,*/}*.js'
         ]
       },
       test: {
@@ -182,7 +182,10 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: [
+        '.tmp/*',
+        '!.tmp/scripts/**'
+      ]
     },
 
     // Add vendor prefixed styles
@@ -480,7 +483,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
-      'babel:server',
+      'newer:babel:server',
       'connect:livereload',
       'watch'
     ]);
