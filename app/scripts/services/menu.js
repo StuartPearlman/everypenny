@@ -2,15 +2,11 @@
 
 angular.module('everyPenny')
 
-.factory('Menu', function(_) {
-  let Menu = function(configOptions) {
+.factory('Menu', function($http, remoteMenu, _) {
+  let Menu = function(configOptions = {}) {
     this.budget = configOptions.budget || 0;
     this.menuItems = configOptions.menuItems || [];
     this.menuString = configOptions.menuString || '';
-
-    this.clearMenuString = function() {
-      this.menuString = '';
-    };
 
     this.generateMenu = function(total, returnedMenuItemsString, menu) {
       total = _.round(total || this.budget, 2);
@@ -38,6 +34,19 @@ angular.module('everyPenny')
         _.remove(cachedMenu, (cachedMenuItem) => cachedMenuItem.name === item.name);
       });
     };
+
+    this.getRemoteMenu = function() {
+      this.url = 'https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt';
+
+      return remoteMenu.get(this.url)
+      .then((response) => {
+        this.budget = response.budget;
+        this.menuItems = response.menuItems;
+      })
+      .catch((error) => {
+        this.error = error;
+      });
+    }
   };
 
   return Menu;
