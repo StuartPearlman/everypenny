@@ -35,18 +35,31 @@ angular.module('everyPenny')
       });
     };
 
+    this.parseTextFileData = function(data) {
+      let textfileArray = data.match(/[^\n]+/g);
+      this.budget = _.round(textfileArray.shift().replace(/\$/g, ''), 2);
+
+      textfileArray.forEach((menuItem) => {
+        let menuItemArray = menuItem.split(',');
+
+        this.menuItems.push({
+          name: menuItemArray[0],
+          price: _.round(menuItemArray[1].replace(/\$/g, ''), 2)
+        });
+      });
+    };
+
     this.getRemoteMenu = function() {
       this.url = 'https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt';
 
       return remoteMenu.get(this.url)
       .then((response) => {
-        this.budget = response.budget;
-        this.menuItems = response.menuItems;
+        this.parseTextFileData(response.data);
       })
       .catch((error) => {
         this.error = error;
       });
-    }
+    };
   };
 
   return Menu;

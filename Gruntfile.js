@@ -39,7 +39,8 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:babel:server', 'newer:jshint:all', 'newer:jscs:all'],
+        tasks: ['newer:babel:server'],
+        // tasks: ['newer:babel:server', 'newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
