@@ -1,5 +1,6 @@
 <h1>{{ picker.menu.menuString }}</h1>
+<h1>{{ picker.menu.possibleMenus }}</h1>
 <button ng-click="picker.menu.generateMenu()">Generate menu!</button>
 <button ng-click="picker.menu.getRemoteMenu()">Get remote menu!</button>
 
-<input type="file" ep-file-reader on-file-loaded="picker.menu.parseTextFileData(data)">
+<input type="file" ep-file-reader on-file-loaded="picker.menu.getMenuFromFile(data)">

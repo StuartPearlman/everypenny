@@ -42,7 +42,8 @@ module.exports = function (grunt) {
         tasks: ['newer:babel:server'],
         // tasks: ['newer:babel:server', 'newer:jshint:all', 'newer:jscs:all'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= connect.options.livereload %>',
+          spawn: false
         }
       },
       jsTest: {

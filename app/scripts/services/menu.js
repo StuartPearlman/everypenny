@@ -3,44 +3,60 @@
 angular.module('everyPenny')
 
 .factory('Menu', function($http, remoteMenu, _) {
-  let Menu = function(configOptions = {}) {
+  const Menu = function(configOptions = {}) {
     this.budget = configOptions.budget || 0;
     this.menuItems = configOptions.menuItems || [];
-    this.menuString = configOptions.menuString || '';
+    this.possibleMenus = configOptions.possibleMenus || [];
 
     this.generateMenu = function(total, returnedMenuItemsString, menu) {
       total = _.round(total || this.budget, 2);
       returnedMenuItemsString = returnedMenuItemsString || '';
       menu = menu || this.menuItems;
 
-      let cachedMenu = _.clone(menu);
+      const cachedMenu = _.clone(menu);
+      const addCommaIfNeeded = (string) => {
+        if (string && !/,$/.test(string)) {
+          return string += ',';
+        } else {
+          return string;
+        }
+      }
 
       menu.forEach((item) => {
-        let price = _.round(item.price, 2);
+        const price = _.round(item.price, 2);
 
         if (total - price === 0) {
-          if (this.menuString) {
-            this.menuString = this.menuString + ' AND';
-          }
-
-          this.menuString = this.menuString + returnedMenuItemsString + ' ' + item.name;
+          returnedMenuItemsString = addCommaIfNeeded(returnedMenuItemsString);
+          this.possibleMenus.push(returnedMenuItemsString + item.name);
           return;
         }
 
         if (total - price > 0) {
-          this.generateMenu(total - price, returnedMenuItemsString + ' ' + item.name, cachedMenu);
+          returnedMenuItemsString = addCommaIfNeeded(returnedMenuItemsString);
+          this.generateMenu(total - price, returnedMenuItemsString + item.name, cachedMenu);
         }
 
         _.remove(cachedMenu, (cachedMenuItem) => cachedMenuItem.name === item.name);
       });
     };
 
-    this.parseTextFileData = function(data) {
-      let textfileArray = data.match(/[^\n]+/g);
+    this.getPossibleMenus = function() {
+      if (this.possibleMenus) {
+        this.possibleMenus = [];
+      }
+
+      this.generateMenu();
+      this.possibleMenus.forEach((possibleMenu, index) => {
+        this.possibleMenus[index] = possibleMenu.split(',');
+      });
+    };
+
+    this._parseTextFileData = function(data) {
+      const textfileArray = data.match(/[^\n]+/g);
       this.budget = _.round(textfileArray.shift().replace(/\$/g, ''), 2);
 
       textfileArray.forEach((menuItem) => {
-        let menuItemArray = menuItem.split(',');
+        const menuItemArray = menuItem.split(',');
 
         this.menuItems.push({
           name: menuItemArray[0],
@@ -49,16 +65,22 @@ angular.module('everyPenny')
       });
     };
 
-    this.getRemoteMenu = function() {
+    this.getPossibleMenusFromUrl = function() {
       this.url = 'https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt';
 
       return remoteMenu.get(this.url)
       .then((response) => {
-        this.parseTextFileData(response.data);
+        this._parseTextFileData(response.data);
+        this.getPossibleMenus();
       })
       .catch((error) => {
         this.error = error;
       });
+    };
+
+    this.getPossibleMenusFromFile = function(data) {
+      this._parseTextFileData(data);
+      this.getPossibleMenus();
     };
   };
 
