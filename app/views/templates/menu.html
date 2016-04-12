@@ -1,0 +1,14 @@
+<div ng-if="picker.menu.budget">
+  <h3>Your budget</h3>
+  <span>
+    {{ picker.menu.budget | currency : '$' : 2 }}
+  </span>
+</div>
+
+<div ng-if="picker.menu.menuItems.length">
+  <h3>Menu Items</h3>
+  <span ng-repeat="item in picker.menu.menuItems track by $index">
+    {{ item.name }}
+    {{ item.price | currency : '$' : 2 }}
+  </span>
+</div>

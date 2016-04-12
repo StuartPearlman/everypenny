@@ -40,6 +40,17 @@ angular.module('everyPenny')
       });
     };
 
+    let parsePossibleMenu = function(possibleMenu) {
+      possibleMenu = _.countBy(possibleMenu.split(','));
+      const parsedMenu = [];
+
+      _.each(possibleMenu, (value, key) => {
+        parsedMenu.push(`${value} ${value > 1 ? 'orders' : 'order'} ${key}`);
+      });
+
+      return parsedMenu;
+    };
+
     this.getPossibleMenus = function() {
       if (this.possibleMenus) {
         this.possibleMenus = [];
@@ -47,7 +58,7 @@ angular.module('everyPenny')
 
       this.generateMenu();
       this.possibleMenus.forEach((possibleMenu, index) => {
-        this.possibleMenus[index] = possibleMenu.split(',');
+        this.possibleMenus[index] = parsePossibleMenu(possibleMenu);
       });
     };
 

@@ -1,0 +1,71 @@
+<form
+  novalidate
+  name="budgetForm"
+  class="pure-form pure-form-aligned"
+>
+  <fieldset>
+    <div class="pure-control-group">
+      <label for="budget">
+        Budget
+      </label>
+      <input
+        autofocus
+        required
+        type="number"
+        placeholder="107.50"
+        step="0.01"
+        min="0"
+        id="budget"
+        ng-model="menu.budget"
+      >
+    </div>
+  </fieldset>
+</form>
+
+<form
+  novalidate
+  name="menuForm"
+  class="pure-form pure-form-aligned"
+  ng-submit="addMenuItem(item)"
+>
+  <fieldset>
+    <div class="pure-control-group">
+      <label for="name">
+        Name
+      </label>
+      <input
+        required
+        type="text"
+        placeholder="Artisan Flatbread"
+        id="name"
+        ng-model="item.name"
+      >
+    </div>
+
+    <div class="pure-control-group">
+      <label for="price">
+        Price
+      </label>
+      <input
+        required
+        type="number"
+        placeholder="12.50"
+        step="0.01"
+        min="0"
+        id="price"
+        ng-model="item.price"
+      >
+    </div>
+
+    <div class="pure-controls">
+      <button
+        type="submit"
+        class="pure-button pure-button-primary"
+        ng-click="addMenuItem(item)"
+        ng-disabled="menuForm.$invalid"
+      >
+        Add item
+      </button>
+    </div>
+  </fieldset>
+</form>

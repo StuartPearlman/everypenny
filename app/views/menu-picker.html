@@ -1,6 +1,12 @@
-<h1>{{ picker.menu.menuString }}</h1>
-<h1>{{ picker.menu.possibleMenus }}</h1>
-<button ng-click="picker.menu.generateMenu()">Generate menu!</button>
-<button ng-click="picker.menu.getRemoteMenu()">Get remote menu!</button>
+<div class="menu-picker-wrapper">
+  <ng-include
+    src="'views/templates/welcome.html'"
+    ng-if="!picker.inputType"
+  >
+  </ng-include>
 
-<input type="file" ep-file-reader on-file-loaded="picker.menu.getMenuFromFile(data)">
+  <ng-include
+    src="'views/templates/input-types.html'"
+  >
+  </ng-include>
+</div>

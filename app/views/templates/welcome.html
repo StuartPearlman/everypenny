@@ -1,0 +1,51 @@
+<div class="welcome-wrapper">
+  <div class="card opening-card" ng-class="{ outline: picker.actionHover }" ng-if="picker.card === picker.CARDS.WELCOME">
+    <h2 class="heading">
+      Welcome to Every Penny
+    </h2>
+
+    <h3 class="subheading">
+      This app calculates the exact items you should order to maximize a given budget...right down
+      to the last penny!
+    </h3>
+
+    <button
+      class="pure-button pure-button-primary get-started"
+      ng-click="picker.card = picker.CARDS.INPUT"
+      ng-mouseenter="picker.actionHover = true"
+      ng-mouseleave="picker.actionHover = false"
+    >
+      Get started
+    </button>
+  </div>
+
+  <div class="card input-card" ng-class="{ outline: picker.actionHover }" ng-if="picker.card === picker.CARDS.INPUT">
+    <h3 class="subheading">
+      Please select how you would like to input your desired budget and menu items
+    </h3>
+
+    <hr>
+
+    <button
+      class="pure-button pure-button-primary input"
+      ng-click="picker.inputType = input.type"
+      ng-repeat-start="input in picker.inputs"
+      ng-mouseenter="picker.actionHover = true"
+      ng-mouseleave="picker.actionHover = false"
+    >
+      {{ input.buttonText }}
+    </button>
+
+    <span class="label" ng-repeat-end>
+      {{ input.label }}
+    </span>
+  </div>
+
+  <button
+    class="pure-button pure-button-primary back"
+    ng-click="picker.card = picker.CARDS.WELCOME"
+    ng-if="picker.card !== picker.CARDS.WELCOME"
+  >
+    Go back
+  </button>
+</div>

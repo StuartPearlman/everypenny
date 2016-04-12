@@ -1,6 +1,57 @@
+@import 'base';
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
+}
+
+.header {
+  font-family: $header-font;
+  background-color: $blue;
+  color: $opaque;
+  height: 80px;
+  font-size: 48px;
+  line-height: 80px;
+}
+
+.heading {
+  font-size: 36px;
+  color: $primary;
+  margin-bottom: 14px;
+}
+
+.subheading {
+  font-size: 24px;
+  margin: 0 auto;
+  margin-bottom: 28px;
+  width: 80%;
+  line-height: 1.2;
+}
+
+.menu-picker-wrapper {
+  padding: 30px 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 30px 15px;
+  border-radius: 3px;
+  background-color: $opaque;
+  border: 1px solid $blue;
+
+  &.outline {
+    border-color: $yellow;
+  }
+}
+
+.pure-button-primary {
+  background-color: $blue;
+  color: $opaque;
+
+  &:hover {
+    background-color: $yellow;
+  }
 }

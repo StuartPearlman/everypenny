@@ -1,0 +1,35 @@
+@import 'base';
+
+.welcome-wrapper {
+  .label {
+    display: block;
+    max-width: 60%;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+      margin-bottom: 28px;
+    }
+  }
+
+  .pure-button-primary {
+    font-size: 24px;
+
+    &.get-started {
+      height: 60px;
+      width: 180px;
+    }
+
+    &.input {
+      margin-bottom: 14px;
+    }
+
+    &.back {
+      margin-top: 36px;
+    }
+  }
+
+  hr {
+    @include thin-hr;
+    margin-bottom: 28px;
+  }
+}

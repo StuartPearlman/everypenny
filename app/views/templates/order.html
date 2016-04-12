@@ -1,0 +1,8 @@
+<h1>Tell your server you'd like:</h1>
+<ul ng-repeat-start="menu in picker.menu.possibleMenus">
+  <li ng-repeat="item in menu">
+    {{ item }}
+  </li>
+</ul>
+
+<h2 ng-repeat-end ng-if="!$last">OR</h2>
