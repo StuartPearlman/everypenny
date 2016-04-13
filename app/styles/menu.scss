@@ -1,0 +1,32 @@
+@import 'base';
+
+.menu-card {
+  margin-top: 20px;
+
+  .menu-header {
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .menu-item-wrapper {
+    margin-top: 28px;
+  }
+
+  .menu-wrapper {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .left, .right {
+    display: inline-block;
+  }
+
+  .left {
+    text-align: left;
+    margin-right: 60px;
+  }
+
+  .right {
+    text-align: right;
+  }
+}

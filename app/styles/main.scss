@@ -50,8 +50,31 @@
 .pure-button-primary {
   background-color: $blue;
   color: $opaque;
+  display: block;
+  font-size: 24px;
 
   &:hover {
     background-color: $yellow;
+  }
+
+  &.back {
+    margin-top: 36px;
+  }
+}
+
+hr {
+  @include thin-hr;
+  margin-bottom: 28px;
+}
+
+li {
+  line-height: 1.5;
+}
+
+a {
+  color: $blue;
+
+  &:hover {
+    color: $yellow;
   }
 }

@@ -60,6 +60,8 @@ angular.module('everyPenny')
       this.possibleMenus.forEach((possibleMenu, index) => {
         this.possibleMenus[index] = parsePossibleMenu(possibleMenu);
       });
+
+      this.isGenerated = true;
     };
 
     this._parseTextFileData = function(data) {

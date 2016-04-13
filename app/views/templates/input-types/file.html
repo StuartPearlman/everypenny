@@ -1,1 +1,43 @@
-<input type="file" ep-file-reader on-file-loaded="picker.menu.getPossibleMenusFromFile(data)">
+<div
+  class="card file-card"
+  ng-init="picker.actionHover = false"
+  ng-class="{ outline: picker.actionHover || picker.linkHover }"
+>
+  <h3 class="subheading">
+    Select a text file from your computer by clicking the button below
+  </h3>
+
+  <div class="file-upload">
+    <button
+      class="pure-button pure-button-primary"
+      ng-class="{ gold: picker.actionHover }"
+    >
+      Select file
+    </button>
+
+    <input
+      type="file"
+      ep-file-reader
+      on-file-loaded="picker.menu.getPossibleMenusFromFile(data)"
+      ng-mouseenter="picker.actionHover = true"
+      ng-mouseleave="picker.actionHover = false"
+    >
+  </div>
+
+  <span class="label">
+    Having trouble? See Every Penny's
+    <a
+      href=""
+      ng-mouseenter="picker.linkHover = true"
+      ng-mouseleave="picker.linkHover = false"
+      ng-click="picker.showModal = true"
+    >
+      text file formatting guidlines
+    </a>
+  </span>
+</div>
+
+<ng-include
+  src="'views/templates/modal.html'"
+>
+</ng-include>

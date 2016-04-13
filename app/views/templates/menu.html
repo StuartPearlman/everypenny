@@ -1,14 +1,31 @@
-<div ng-if="picker.menu.budget">
-  <h3>Your budget</h3>
-  <span>
-    {{ picker.menu.budget | currency : '$' : 2 }}
-  </span>
-</div>
+<div class="card menu-card">
+  <h3 class="subheading">
+    Your menu
+  </h3>
 
-<div ng-if="picker.menu.menuItems.length">
-  <h3>Menu Items</h3>
-  <span ng-repeat="item in picker.menu.menuItems track by $index">
-    {{ item.name }}
-    {{ item.price | currency : '$' : 2 }}
-  </span>
+  <hr>
+
+  <div ng-if="picker.menu.budget">
+    <h4 class="menu-header">Budget</h4>
+    <span>
+      {{ picker.menu.budget | currency : '$' : 2 }}
+    </span>
+  </div>
+
+  <div class="menu-item-wrapper" ng-if="picker.menu.menuItems.length">
+    <h4 class="menu-header">Menu Items</h4>
+    <div class="menu-wrapper">
+      <ul class="left">
+        <li ng-repeat="item in picker.menu.menuItems track by $index">
+          {{ item.name | uppercase }}
+        </li>
+      </ul>
+
+      <ul class="right">
+        <li ng-repeat="item in picker.menu.menuItems track by $index">
+          {{ item.price | currency : '$' : 2 }}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

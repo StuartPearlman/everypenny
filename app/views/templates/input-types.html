@@ -1,19 +1,39 @@
 <ng-include
-  src="'views/templates/input-types/file.html'"
-  ng-if="picker.inputType === picker.FILE_TYPES.FILE"
+  src="'views/templates/order.html'"
+  ng-if="picker.menu.isGenerated"
 >
 </ng-include>
 
 <ng-include
-  src="'views/templates/input-types/url.html'"
-  ng-if="picker.inputType === picker.FILE_TYPES.URL"
+  src="'views/templates/menu.html'"
+  ng-if="picker.menu.isGenerated || picker.inputType === picker.FILE_TYPES.MANUAL"
 >
 </ng-include>
 
-<ng-include
-  src="'views/templates/input-types/manual.html'"
-  ng-if="picker.inputType === picker.FILE_TYPES.MANUAL"
->
-</ng-include>
+<div ng-if="!picker.menu.isGenerated">
+  <ng-include
+    src="'views/templates/input-types/file.html'"
+    ng-if="picker.inputType === picker.FILE_TYPES.FILE"
+  >
+  </ng-include>
 
-<button ng-click="picker.startOver()" ng-if="picker.inputType">Start Over</button>
+  <ng-include
+    src="'views/templates/input-types/url.html'"
+    ng-if="picker.inputType === picker.FILE_TYPES.URL"
+  >
+  </ng-include>
+
+  <ng-include
+    src="'views/templates/input-types/manual.html'"
+    ng-if="picker.inputType === picker.FILE_TYPES.MANUAL"
+  >
+  </ng-include>
+</div>
+
+<button
+  class="pure-button pure-button-primary back"
+  ng-click="picker.startOver()"
+  ng-if="picker.inputType"
+>
+  Start Over
+</button>

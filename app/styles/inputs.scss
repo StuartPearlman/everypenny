@@ -1,0 +1,85 @@
+@import 'base';
+
+.file-card {
+  input[type='file'] {
+    width: 152px;
+    height: 52px;
+    display: block;
+    margin: 0 auto;
+    margin-top: -52px;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  ::-webkit-file-upload-button {
+    cursor: pointer;
+  }
+
+  .pure-button-primary {
+    margin-bottom: 14px;
+
+    &.gold {
+      background-color: $yellow;
+    }
+  }
+}
+
+.modal {
+  .modal-overlay {
+    position:absolute;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity: 0.8;
+  }
+
+  .modal-card {
+    /* A centered div above the overlay with a box shadow. */
+    z-index:10000;
+    position: absolute;
+    width: 50%; /* Default */
+
+    /* Center the dialog */
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    -webkit-transform: translate(-50%, -25%);
+    -moz-transform: translate(-50%, -25%);
+
+    background-color: #fff;
+    box-shadow: 4px 4px 80px #000;
+  }
+
+  .label {
+    display: block;
+    line-height: 1.2;
+    max-width: 80%;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+
+  .sample-file {
+    display: inline-block;
+    margin: 0 auto;
+    border: 1px solid $primary;
+    border-radius: 3px;
+    padding: 15px;
+    box-shadow: 4px 4px 8px $black;
+    margin-bottom: 28px;
+
+    li {
+      font-family: "Times New Roman", Georgia, Serif;
+      line-height: 1;
+      text-align: left;
+    }
+  }
+}
