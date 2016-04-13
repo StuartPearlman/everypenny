@@ -57,9 +57,21 @@
     background-color: $yellow;
   }
 
+  &:disabled:hover {
+    background-color: $blue;
+  }
+
   &.back {
     margin-top: 36px;
   }
+}
+
+.label {
+  display: block;
+  max-width: 80%;
+  margin: 0 auto;
+  line-height: 1.2;
+  margin-top: 14px;
 }
 
 hr {
@@ -77,4 +89,34 @@ a {
   &:hover {
     color: $yellow;
   }
+}
+
+input {
+  font-size: 20px;
+  border-color: $blue;
+}
+
+form {
+  text-align: center;
+}
+
+.pure-form-aligned .pure-controls {
+  margin: 14px auto;
+}
+
+.pure-form fieldset {
+  padding: 0;
+}
+
+.pure-form-aligned .pure-control-group {
+  margin: 0;
+}
+
+.pure-form input:focus:invalid {
+  border-color: $blue;
+  color: $blue;
+}
+
+.pure-form input:focus {
+  border-color: $blue !important;
 }

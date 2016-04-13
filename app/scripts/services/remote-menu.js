@@ -4,8 +4,8 @@ angular.module('everyPenny')
 
 .service('remoteMenu', function($http) {
   this.get = function(url) {
-    // Icky icky ICKY! Never in prod. Just a workaround since I don't control the server.
-    let corsProxy = 'https://crossorigin.me/';
+    // Simple workaround for CORS support. Not production stable.
+    let corsProxy = 'https://ep-simple-corsproxy.herokuapp.com/';
 
     return $http.get(corsProxy + url);
   };

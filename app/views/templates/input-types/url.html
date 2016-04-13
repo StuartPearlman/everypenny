@@ -1,1 +1,66 @@
-<button ng-click="picker.menu.getRemoteMenu()">Get remote menu!</button>
+<div
+  class="card url-card"
+  ng-init="picker.clearHover()"
+  ng-class="{ outline: picker.actionHover || picker.linkHover }"
+>
+  <h3 class="subheading">
+    Please enter the url of your menu text file
+  </h3>
+
+  <form
+    novalidate
+    name="urlForm"
+    class="pure-form pure-form-aligned"
+    ng-submit="picker.menu.getPossibleMenusFromUrl()"
+  >
+    <fieldset>
+      <div class="pure-control-group">
+        <input
+          autofocus
+          required
+          type="url"
+          id="url"
+          ng-model="picker.menu.url"
+        >
+      </div>
+
+      <div class="pure-controls">
+        <button
+          type="submit"
+          class="pure-button pure-button-primary"
+          ng-mouseenter="picker.actionHover = true"
+          ng-mouseleave="picker.actionHover = false"
+          ng-disabled="urlForm.$invalid"
+        >
+          Generate menu
+        </button>
+      </div>
+    </fieldset>
+  </form>
+
+  <span class="label">
+    Having trouble? See Every Penny's
+    <a
+      href=""
+      ng-mouseenter="picker.linkHover = true"
+      ng-mouseleave="picker.linkHover = false"
+      ng-click="picker.showModal = true"
+    >
+      text file formatting guidlines
+    </a>
+    or try
+    <a
+      href=""
+      ng-mouseenter="picker.linkHover = true"
+      ng-mouseleave="picker.linkHover = false"
+      ng-click="picker.startOver(picker.FILE_TYPES.FILE)"
+    >
+      using a local text file.
+    </a>
+  </span>
+</div>
+
+<ng-include
+  src="'views/templates/modal.html'"
+>
+</ng-include>

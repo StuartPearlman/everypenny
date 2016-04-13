@@ -79,8 +79,6 @@ angular.module('everyPenny')
     };
 
     this.getPossibleMenusFromUrl = function() {
-      this.url = 'https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt';
-
       return remoteMenu.get(this.url)
       .then((response) => {
         this._parseTextFileData(response.data);

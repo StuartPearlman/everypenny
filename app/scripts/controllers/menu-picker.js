@@ -9,6 +9,22 @@ angular.module('everyPenny')
   this.menu = new Menu();
   this.card = CARDS.WELCOME;
 
+  this.startOver = (inputType) => {
+    this.menu = new Menu();
+
+    if (inputType) {
+      this.inputType = inputType;
+    } else {
+      this.inputType = undefined;
+      this.card = CARDS.INPUT;
+    }
+  }
+
+  this.clearHover = () => {
+    this.actionHover = false;
+    this.linkHover = false;
+  }
+
   this.inputs = [{
     type: FILE_TYPES.FILE,
     buttonText: 'Use text file',
