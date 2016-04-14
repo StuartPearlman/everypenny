@@ -120,3 +120,14 @@ form {
 .pure-form input:focus {
   border-color: $blue !important;
 }
+
+.pure-form-aligned .pure-control-group label {
+  margin-right: 20px;
+  width: 60px;
+}
+
+.pure-form input[readonly] {
+  background-color: $light-blue;
+  text-align: center;
+  color: $primary;
+}

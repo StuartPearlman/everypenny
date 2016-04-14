@@ -14,7 +14,9 @@ angular.module('everyPenny')
 
       scope.addMenuItem = (item) => {
         scope.menu.menuItems.push(item);
+        scope.buttonHover = false;
         scope.item = {};
+        element[0].querySelector('input[type="text"]').focus();
       }
     }
   };

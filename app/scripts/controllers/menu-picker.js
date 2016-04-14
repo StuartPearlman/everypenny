@@ -6,8 +6,10 @@ angular.module('everyPenny')
   this.CARDS = CARDS;
   this.FILE_TYPES = FILE_TYPES;
 
-  this.menu = new Menu();
+  this.menu = new Menu({menuItems: [{name: 'pizza', price: 2.50}, {name: 'casserole', price: 3.50}]});
   this.card = CARDS.WELCOME;
+
+  this.inputType = 'manual';
 
   this.startOver = (inputType) => {
     this.menu = new Menu();
@@ -18,12 +20,24 @@ angular.module('everyPenny')
       this.inputType = undefined;
       this.card = CARDS.INPUT;
     }
-  }
+  };
+
+  this.returnToManualInput = () => {
+    this.menu.isGenerated = false;
+    this.inputType = FILE_TYPES.MANUAL;
+    this.clearHover();
+  };
+
+  this.removeMenuItem = (item) => {
+    _.remove(this.menu.menuItems, item);
+    this.clearHover();
+  };
 
   this.clearHover = () => {
     this.actionHover = false;
     this.linkHover = false;
-  }
+    this.deleteHover = '';
+  };
 
   this.inputs = [{
     type: FILE_TYPES.FILE,

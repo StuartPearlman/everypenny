@@ -1,31 +1,72 @@
-<div class="card menu-card">
+<div class="card menu-card"  ng-init="picker.clearHover()"
+  ng-class="{
+    outline: picker.actionHover || picker.linkHover,
+    delete: picker.deleteHover || picker.deleteHover === 0
+  }">
   <h3 class="subheading">
     Your menu
   </h3>
 
   <hr>
 
-  <div ng-if="picker.menu.budget">
-    <h4 class="menu-header">Budget</h4>
-    <span>
-      {{ picker.menu.budget | currency : '$' : 2 }}
-    </span>
-  </div>
+  <h4 class="menu-header">Budget</h4>
 
-  <div class="menu-item-wrapper" ng-if="picker.menu.menuItems.length">
+  <span class="placeholder" ng-if="!(picker.menu.budget || picker.menu.budget === 0)">
+    Please enter a budget
+  </span>
+
+  <span class="budget">
+    {{ picker.menu.budget | currency : '$' : 2 }}
+  </span>
+
+  <div class="menu-item-wrapper">
     <h4 class="menu-header">Menu Items</h4>
-    <div class="menu-wrapper">
-      <ul class="left">
-        <li ng-repeat="item in picker.menu.menuItems track by $index">
-          {{ item.name | uppercase }}
-        </li>
-      </ul>
 
-      <ul class="right">
-        <li ng-repeat="item in picker.menu.menuItems track by $index">
-          {{ item.price | currency : '$' : 2 }}
-        </li>
-      </ul>
+    <span class="placeholder" ng-if="!picker.menu.menuItems.length">
+      Your menu items will appear here automatically as you add them
+    </span>
+
+    <div class="menu-wrapper">
+      <div class="menu-items">
+        <ul class="left">
+          <li ng-repeat="item in picker.menu.menuItems track by $index" ng-class="{ delete: picker.deleteHover === $index }">
+            {{ item.name | uppercase }}
+          </li>
+        </ul>
+
+        <ul class="right">
+          <li  ng-repeat="item in picker.menu.menuItems track by $index" ng-class="{ delete: picker.deleteHover === $index }">
+            {{ item.price | currency : '$' : 2 }}
+            <ng-include
+              src="'images/icons/delete.svg'"
+              ng-click="picker.removeMenuItem(item)"
+              ng-if="picker.inputType === picker.FILE_TYPES.MANUAL && !picker.menu.isGenerated"
+              ng-mouseenter="picker.deleteHover = $index"
+              ng-mouseleave="picker.deleteHover = ''"
+            ></ng-include>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <button
+    class="pure-button pure-button-primary get-menus"
+    ng-click="picker.menu.getPossibleMenus()"
+    ng-if="picker.inputType === picker.FILE_TYPES.MANUAL && picker.menu.menuItems.length && !picker.menu.isGenerated"
+    ng-mouseenter="picker.actionHover = true"
+    ng-mouseleave="picker.actionHover = false"
+  >
+    Generate possible orders
+  </button>
+
+  <button
+    class="pure-button pure-button-primary edit-menu"
+    ng-click="picker.returnToManualInput()"
+    ng-if="picker.inputType === picker.FILE_TYPES.MANUAL && picker.menu.isGenerated"
+    ng-mouseenter="picker.actionHover = true"
+    ng-mouseleave="picker.actionHover = false"
+  >
+    Edit Menu
+  </button>
 </div>

@@ -19,7 +19,7 @@
     </button>
   </div>
 
-  <div class="card input-card" ng-class="{ outline: picker.actionHover }" ng-if="picker.card === picker.CARDS.INPUT">
+  <div class="card input-card" ng-class="{ outline: picker.actionHover }" ng-if="picker.card === picker.CARDS.INPUT" ng-init="picker.clearHover()">
     <h3 class="subheading">
       Please select how you would like to input your desired budget and menu items
     </h3>

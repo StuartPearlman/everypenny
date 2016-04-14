@@ -3,6 +3,10 @@
 .menu-card {
   margin-top: 20px;
 
+  &.delete {
+    border-color: $red;
+  }
+
   .menu-header {
     margin-bottom: 14px;
     font-weight: 600;
@@ -12,14 +16,9 @@
     margin-top: 28px;
   }
 
-  .menu-wrapper {
-    max-width: 80%;
-    margin: 0 auto;
-  }
-
   .left, .right {
     display: inline-block;
-  }
+   }
 
   .left {
     text-align: left;
@@ -28,5 +27,35 @@
 
   .right {
     text-align: right;
+  }
+
+  .menu-wrapper {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .placeholder {
+    font-style: italic;
+  }
+
+  .get-menus, .edit-menu {
+    margin-top: 28px;
+  }
+
+
+  svg {
+    vertical-align: text-bottom;
+    cursor: pointer;
+    fill: $blue;
+
+    &:hover {
+      fill: $red;
+    }
+  }
+
+  li {
+    &.delete {
+      color: $red;
+    }
   }
 }

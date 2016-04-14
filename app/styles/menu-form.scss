@@ -1,0 +1,21 @@
+@import 'base';
+
+.menu-form-card {
+  margin-top: 20px;
+
+  &.outline {
+    border-color: $yellow;
+  }
+
+  .menu-item-header {
+    margin-top: 28px;
+  }
+
+  .menu-items {
+    .pure-control-group {
+      &:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+  }
+}
