@@ -4,13 +4,23 @@
 >
 </ng-include>
 
+<div class="card error-card" ng-init="picker.clearHover()" ng-if="isError">
+  <h3 class="subheading">
+    Sorry! No possible combination of the menu items you provided add up to exactly that budget.
+  </h3>
+
+  <h3 class="subheading">
+    Maybe try the nachos?
+  </h3>
+</div>
+
 <ng-include
   src="'views/templates/menu.html'"
   ng-if="picker.menu.isGenerated || picker.inputType === picker.FILE_TYPES.MANUAL"
 >
 </ng-include>
 
-<div ng-if="!picker.menu.isGenerated">
+<div ng-if="!picker.menu.isGenerated && !isError">
   <ng-include
     src="'views/templates/input-types/file.html'"
     ng-if="picker.inputType === picker.FILE_TYPES.FILE"

@@ -2,14 +2,12 @@
 
 angular.module('everyPenny')
 
-.controller('MenuPicker', function(Menu, FILE_TYPES, CARDS) {
+.controller('MenuPicker', function(Menu, FILE_TYPES, CARDS, $rootScope) {
   this.CARDS = CARDS;
   this.FILE_TYPES = FILE_TYPES;
 
-  this.menu = new Menu({menuItems: [{name: 'pizza', price: 2.50}, {name: 'casserole', price: 3.50}]});
+  this.menu = new Menu();
   this.card = CARDS.WELCOME;
-
-  this.inputType = 'manual';
 
   this.startOver = (inputType) => {
     this.menu = new Menu();
@@ -20,6 +18,8 @@ angular.module('everyPenny')
       this.inputType = undefined;
       this.card = CARDS.INPUT;
     }
+
+    $rootScope.isError = false;
   };
 
   this.returnToManualInput = () => {
@@ -52,6 +52,4 @@ angular.module('everyPenny')
     buttonText: 'Input menu items manually',
     label: 'Input your budget and menu by hand.'
   }];
-
-  // this.menu.getPossibleMenusFromUrl();
 });

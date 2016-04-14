@@ -1,4 +1,4 @@
-<div class="card order-card" ng-init="picker.clearHover()">
+<div class="card order-card" ng-init="picker.clearHover()" ng-if="picker.menu.possibleMenus.length">
   <h3 class="subheading">
     Tell your server you'd like:
   </h3>
@@ -15,4 +15,14 @@
   </ul>
 
   <h3 class="subheading divider" ng-repeat-end ng-if="!$last">OR</h3>
+</div>
+
+<div class="card error-card" ng-init="picker.clearHover()" ng-if="!picker.menu.possibleMenus.length">
+  <h3 class="subheading">
+    Sorry! No possible combination of the menu items you provided add up to exactly that budget.
+  </h3>
+
+  <h3 class="subheading">
+    Maybe try the nachos?
+  </h3>
 </div>

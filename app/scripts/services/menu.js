@@ -2,7 +2,7 @@
 
 angular.module('everyPenny')
 
-.factory('Menu', function($http, remoteMenu, _) {
+.factory('Menu', function($http, remoteMenu, _, $rootScope) {
   const Menu = function(configOptions = {}) {
     this.budget = configOptions.budget || 0;
     this.menuItems = configOptions.menuItems || [];
@@ -84,8 +84,8 @@ angular.module('everyPenny')
         this._parseTextFileData(response.data);
         this.getPossibleMenus();
       })
-      .catch((error) => {
-        this.error = error;
+      .catch(() => {
+        $rootScope.isError = true;
       });
     };
 
